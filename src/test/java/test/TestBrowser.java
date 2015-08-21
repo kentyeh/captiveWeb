@@ -2,11 +2,8 @@ package test;
 
 import com.thoughtworks.selenium.DefaultSelenium;
 import com.thoughtworks.selenium.SeleneseTestCase;
-import java.net.InetAddress;
-import java.net.UnknownHostException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Optional;
@@ -22,7 +19,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
  */                               
 @Test(groups={"integrate"})
 public class TestBrowser extends SeleneseTestCase {
-    private static Logger logger = LoggerFactory.getLogger(TestBrowser.class);
+    private static final Logger logger = LogManager.getLogger(TestBrowser.class);
     
     protected DefaultSelenium selenium;
     
@@ -34,6 +31,7 @@ public class TestBrowser extends SeleneseTestCase {
     }
 
     @AfterClass
+    @Override
     public void tearDown() {
         if (selenium != null) {
             selenium.stop();

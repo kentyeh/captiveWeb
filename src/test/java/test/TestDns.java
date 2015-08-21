@@ -1,14 +1,14 @@
 package test;
-                          
+
 import captive.context.FakeDNS;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
-import java.util.concurrent.atomic.AtomicInteger;            
+import java.util.concurrent.atomic.AtomicInteger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;  
+import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -25,12 +25,12 @@ import static org.hamcrest.MatcherAssert.assertThat;
  * @author Kent Yeh
  */
 @ContextConfiguration("classpath:testContext.xml")
-@Test(groups={"unit"})
+@Test(groups = {"unit"})
 public class TestDns extends AbstractTestNGSpringContextTests {
 
-    private static Logger logger = LoggerFactory.getLogger(TestDns.class);
-    private SimpleResolver sr = null;
-    private AtomicInteger aidx = new AtomicInteger(0);
+    private static final Logger logger = LoggerFactory.getLogger(TestDns.class);
+    private final SimpleResolver sr = null;
+    private final AtomicInteger aidx = new AtomicInteger(0);
     private String dnsHost = null;
     @Autowired
     private FakeDNS dns;
@@ -38,13 +38,6 @@ public class TestDns extends AbstractTestNGSpringContextTests {
     @BeforeClass
     public void setup() throws UnknownHostException {
         dnsHost = InetAddress.getLocalHost().getHostAddress();
-    }    
-    
-    @AfterClass
-    public void tearDown() throws Exception{
-        if (dns != null) {
-            dns.destroy();
-        }
     }
 
     @Test(invocationCount = 20, threadPoolSize = 10, successPercentage = 100)

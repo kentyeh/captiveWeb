@@ -18,8 +18,13 @@ public class EchoController {
         model.addAttribute("msg", msg);
         return "echo";
     }
-
-    @RequestMapping(value = "/echo", params = {"msg"}, produces = "text/html;charset=UTF-8")
+    /**
+     * value 不能使用 echo，在測試中會與回傳view name的 echo 混淆
+     * @param msg
+     * @param model
+     * @return 
+     */
+    @RequestMapping(value = "/echom", params = {"msg"}, produces = "text/html;charset=UTF-8")
     public String echo2(@RequestParam String msg, Model model) {
         model.addAttribute("msg", msg);
         return "echo";

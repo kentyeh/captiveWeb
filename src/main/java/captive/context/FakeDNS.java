@@ -1,8 +1,8 @@
 package captive.context;
 
 import java.net.InetAddress;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.stereotype.Service;
@@ -15,7 +15,7 @@ import org.springframework.util.StringUtils;
 @Service
 public class FakeDNS implements InitializingBean, DisposableBean {
 
-    private static Logger logger = LoggerFactory.getLogger(FakeDNS.class);
+    private static final Logger logger = LogManager.getLogger(FakeDNS.class);
     FackDNSImpl impl = null;
     private String fakeIp = null;
     private int port = 53;

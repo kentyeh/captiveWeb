@@ -25,8 +25,8 @@ public class AnalizeDNS {
                                                                   
     private DatagramPacket pk_all_in = new DatagramPacket(new byte[512], 512);
     private byte[] payload_IN = new byte[512];
-    private byte[] payload_FORGED = new byte[512];
-    private byte[] IP_h2h = new byte[4];
+    private final byte[] payload_FORGED = new byte[512];
+    private final byte[] IP_h2h = new byte[4];
     private int lenght = 1;
     private char[] URL_req;
     int c = 0;
@@ -55,9 +55,7 @@ public class AnalizeDNS {
     }
 
     public void parser() {
-        for (int i = 0; i < 512; i++) {
-            payload_FORGED[i] = payload_IN[i];
-        }
+        System.arraycopy(payload_IN, 0, payload_FORGED, 0, 512);
         int id = 0;
         while (id == 0) { 					// search the end of the requested URL String
             if (payload_FORGED[12 + c] == (byte) 0) {
