@@ -1,0 +1,16 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Unit" junit="false" parallel="methods" thread-count="5" configfailurepolicy="skip" verbose="0" skipfailedinvocationcounts="false" annotations="JDK">
+    <test verbose="1" name="unit-test">
+        <classes>
+            <!--                   
+            -->              
+            <class name="test.TestDns"/>         
+            <class name="test.TestWeb"/>         
+        </classes>
+        <!--roups>
+            <run>
+                <include name="unit" />
+            </run>
+        </groups-->
+    </test>     
+</suite> 
